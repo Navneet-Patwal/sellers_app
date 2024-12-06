@@ -19,10 +19,10 @@ class _authScreenState extends State<AuthScreen> {
         appBar: AppBar(
           automaticallyImplyLeading: false,
           title: const Text(
-            "vegee",
+            "Vegie",
             style: TextStyle(
               fontSize: 26,
-              color: Colors.white,
+              color: Colors.white
             ),
           ),
           centerTitle: true,
@@ -45,7 +45,7 @@ class _authScreenState extends State<AuthScreen> {
           color: Colors.black87,
           child: const TabBarView(
             children: [
-              SigninScreen(),
+              SignInScreen(),
               SignupScreen()
             ],
           ),

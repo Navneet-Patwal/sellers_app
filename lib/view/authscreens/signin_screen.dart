@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:sellers/widgets/custom_text_feild.dart';
+import 'package:sellers/global/global_ins.dart';
+
+import '../widgets/custom_text_feild.dart';
 
 
-class SigninScreen extends StatefulWidget {
-  const SigninScreen({super.key});
+
+
+class SignInScreen extends StatefulWidget {
+  const SignInScreen({super.key});
 
   @override
-  State<SigninScreen> createState() => _signinScreenState();
+  State<SignInScreen> createState() => _signinScreenState();
 }
 
-class _signinScreenState extends State<SigninScreen> {
+class _signinScreenState extends State<SignInScreen> {
   TextEditingController emailEditingController = TextEditingController();
   TextEditingController passwordEditingController = TextEditingController();
-  GlobalKey<FormState> formkey = GlobalKey<FormState>();
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -30,17 +34,17 @@ class _signinScreenState extends State<SigninScreen> {
             ),
           ),
           Form(
-            key: formkey,
+            key: formKey,
             child: Column(
               children: [
-                CustomTextFeild(
+                CustomTextField(
                   textEditingController: emailEditingController,
                   iconData: Icons.email,
                   hintString: "Email",
                   isObscure: false,
                   enabled: true,
                 ),
-                CustomTextFeild(
+                CustomTextField(
                   textEditingController: passwordEditingController,
                   iconData: Icons.lock,
                   hintString: "Password",
@@ -51,11 +55,15 @@ class _signinScreenState extends State<SigninScreen> {
                 ElevatedButton(
                   onPressed: ()
                   {
-
+                   authViewModel.validateSignInForm(
+                     emailEditingController.text.trim(),
+                     passwordEditingController.text.trim(),
+                     context
+                   );
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blueAccent,
-                    padding: EdgeInsets.symmetric(horizontal: 50,vertical: 10)
+                    padding: const EdgeInsets.symmetric(horizontal: 50,vertical: 10)
                   ),
                   child: const Text(
                     "Login",

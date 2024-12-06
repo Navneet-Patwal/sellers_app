@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "909209522425",
-    "project_id": "vegeee-6ab59",
-    "storage_bucket": "vegeee-6ab59.firebasestorage.app"
+    "project_number": "438667417814",
+    "project_id": "sellers-a4316",
+    "storage_bucket": "sellers-a4316.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:909209522425:android:6670d59c52568399ee5228",
+        "mobilesdk_app_id": "1:438667417814:android:677eeb0a9e8822eb5e1177",
         "android_client_info": {
           "package_name": "com.tigga.sellersapp"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCRpgYq6mrUmqKFdJGFgXnEaXz2kaeirXk"
+          "current_key": "AIzaSyDeROQ8GM534hpa0JO4ljL1mgbKAOp7o3Q"
         }
       ],
       "services": {

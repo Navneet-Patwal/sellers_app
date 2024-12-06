@@ -1,8 +1,10 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:sellers/global/global_var.dart';
-import 'package:sellers/widgets/custom_text_feild.dart';
+import '../widgets/custom_text_feild.dart';
 import '../../global/global_ins.dart';
 
 class SignupScreen extends StatefulWidget {
@@ -34,6 +36,8 @@ class _SignupScreenState extends State<SignupScreen> {
      });
   }
 
+
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -63,42 +67,42 @@ class _SignupScreenState extends State<SignupScreen> {
             key: formKey,
             child: Column(
               children: [
-                CustomTextFeild(
+                CustomTextField(
                   textEditingController: nameTextEditingController,
                   iconData: Icons.person,
                   hintString: "Name",
                   isObscure: false,
                   enabled: true,
                 ),
-                CustomTextFeild(
+                CustomTextField(
                   textEditingController: emailTextEditingController,
                   iconData: Icons.email,
                   hintString: "Email",
                   isObscure: false,
                   enabled: true,
                 ),
-                CustomTextFeild(
+                CustomTextField(
                   textEditingController: phoneTextEditingController,
                   iconData: Icons.phone,
                   hintString: "Phone Number",
                   isObscure: false,
                   enabled: true,
                 ),
-                CustomTextFeild(
+                CustomTextField(
                   textEditingController: passwordTextEditingController,
                   iconData: Icons.lock,
                   hintString: "Password",
                   isObscure: true,
                   enabled: true,
                 ),
-                CustomTextFeild(
+                CustomTextField(
                   textEditingController: confirmPasswordTextEditingController,
                   iconData: Icons.lock,
                   hintString: "Confirm Password",
                   isObscure: true,
                   enabled: true,
                 ),
-                CustomTextFeild(
+                CustomTextField(
                   textEditingController: locationTextEditingController,
                   iconData: Icons.my_location,
                   hintString: "Cafe/Restaurant Address",
@@ -113,7 +117,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   child: ElevatedButton.icon(
                     onPressed: () async
                     {
-                      String address = await commonViewModel.getMyCurrentLocation();
+                      String address = await commonViewModel.getCurrentLocation();
 
                       setState(() {
                         locationTextEditingController.text = address;
@@ -154,10 +158,10 @@ class _SignupScreenState extends State<SignupScreen> {
                   },
                   style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blueAccent,
-                      padding: EdgeInsets.symmetric(horizontal: 50,vertical: 10)
+                      padding: const EdgeInsets.symmetric(horizontal: 50,vertical: 10)
                   ),
                   child: const Text(
-                    "Register",
+                    "Sign Up",
                     style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
