@@ -1,14 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
-
+import 'package:image_picker/image_picker.dart';
 import '../global/global_var.dart';
 
 class CommonViewModel{
-  getCurrentLocation() async{
+  getCurrentLocation() async {
     Position cPosition = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
     position = cPosition;
     placeMark = await placemarkFromCoordinates (cPosition.latitude, cPosition.longitude);
@@ -21,7 +20,6 @@ class CommonViewModel{
     final snackBar = SnackBar(content: Text(message));
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
-
   updateLocationInDatabase() async{
     String address = getCurrentLocation();
     await FirebaseFirestore.instance
@@ -32,5 +30,62 @@ class CommonViewModel{
       "latitude":position?.latitude,
       "longitude": position?.longitude,
     });
+  }
+  pickImageFromGallery() async {
+    imageFile = await pickerImage.pickImage(source: ImageSource.gallery);
+  }
+  captureImageWithPhoneCamera() async{
+    imageFile = await pickerImage.pickImage(source: ImageSource.camera);
+  }
+
+  showDialogWithImageOptions(BuildContext context) async{
+     return showDialog(
+         context: context,
+         builder: (context){
+           return SimpleDialog(
+             title: const Text(
+               "Choose Option",
+               style: TextStyle(
+                 color: Colors.black87,
+                 fontWeight: FontWeight.bold,
+               ),
+             ),
+             children: [
+               SimpleDialogOption(
+                 onPressed: () async
+                 {
+                   await captureImageWithPhoneCamera();
+                   Navigator.pop(context, "Selected");
+                 },
+                 child: const Text(
+                   "Capture With Camera",
+                   style: TextStyle(color: Colors.grey),
+                 ),
+               ),
+               SimpleDialogOption(
+                 onPressed: () async
+                 {
+                    await pickImageFromGallery();
+                    Navigator.pop(context,"Selected");
+                 },
+                 child: const Text(
+                   "Pick From Gallery",
+                   style: TextStyle(color: Colors.grey),
+                 ),
+               ),
+               SimpleDialogOption(
+                 onPressed: ()
+                 {
+                   Navigator.pop(context);
+                 },
+                 child: const Text(
+                   "Cancel",
+                   style: TextStyle(color: Colors.grey),
+                 ),
+               )
+             ],
+           );
+         }
+     );
   }
 }
