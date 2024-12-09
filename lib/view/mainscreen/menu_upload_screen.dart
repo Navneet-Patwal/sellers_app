@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:sellers/global/global_ins.dart';
 import 'package:sellers/global/global_var.dart';
+import 'package:sellers/view/mainscreen/home_screen.dart';
 import 'package:sellers/view/widgets/my_appbar.dart';
 import 'package:sellers/viewModel/menu_view_model.dart';
 
@@ -16,7 +17,7 @@ class _MenuUploadScreenState extends State<MenuUploadScreen> {
   TextEditingController infoTextEditingController = TextEditingController();
   MenuViewModel menuViewModel = MenuViewModel();
   String menuTitleCategoryName = "";
-  defaultScreeen(){
+  defaultScreen(){
     return Scaffold(
       appBar: MyAppbar(
           titleMsg: "Add New Menu",
@@ -126,7 +127,7 @@ class _MenuUploadScreenState extends State<MenuUploadScreen> {
            Padding(
                padding: const EdgeInsets.all(26.0),
              child: DropdownButtonFormField(
-                 hint: Text("Select Category", style: TextStyle(color: Colors.black87),),
+               hint: const Text("Select Category", style: TextStyle(color: Colors.black87),),
                items: categoryList.map<DropdownMenuItem<String>>((categoryName)
                {
                  return DropdownMenuItem(
@@ -141,7 +142,28 @@ class _MenuUploadScreenState extends State<MenuUploadScreen> {
                     commonViewModel.showSnackBar(menuTitleCategoryName, context);
                },
              ),
-           )
+           ),
+
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 40),
+            child: ElevatedButton(
+                onPressed:() async {
+                await menuViewModel.validateMenuUploadForm(
+                 infoTextEditingController.text,
+                 menuTitleCategoryName,
+                 context
+               );
+                Navigator.push(context, MaterialPageRoute(builder: (c)=> HomeScreen()));
+                },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.black87,
+              ),
+                child: const Text("Upload",
+                style: TextStyle(
+                  color: Colors.white60
+                ),),
+            ),
+          )
         ],
       ),
     );
@@ -153,6 +175,6 @@ class _MenuUploadScreenState extends State<MenuUploadScreen> {
     menuViewModel.getCategories();
   }
   Widget build(BuildContext context) {
-    return imageFile==null?defaultScreeen():uploadMenuFormScreen();
+    return imageFile==null?defaultScreen():uploadMenuFormScreen();
   }
 }
