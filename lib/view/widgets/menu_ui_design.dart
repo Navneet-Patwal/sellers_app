@@ -27,21 +27,21 @@ class _MenuUiDesignState extends State<MenuUiDesign> {
             widget.menuModel!.menuImage.toString(),
             width: MediaQuery.of(context).size.width,
             height: 220,
-            fit:BoxFit.cover
+            fit:BoxFit.fitWidth
           ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(widget.menuModel!.menuImage.toString(),
+                Text(widget.menuModel!.menuTitle.toString(),
                 style: const TextStyle(
-                  color: Colors.cyan,
+                  color: Colors.white,
                   fontSize: 20,
                   fontFamily: "Train",
                 ),
                 ),
                 IconButton(onPressed: (){},
                     icon: const Icon(Icons.delete_sweep_outlined,
-                    color: Colors.amber,))
+                    color: Colors.white,))
               ],
             )
           ],

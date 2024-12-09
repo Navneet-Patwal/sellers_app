@@ -63,4 +63,11 @@ class MenuViewModel{
     });
      commonViewModel.showSnackBar("Uploaded Successfully!", context);
   }
+
+  retrieveMenus(){
+    return FirebaseFirestore.instance.collection("sellers")
+        .doc(sharedPreferences!.getString("uid"))
+        .collection("menus").orderBy("publishedDateTime", descending: true)
+        .snapshots();
+  }
 }

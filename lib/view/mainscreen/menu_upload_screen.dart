@@ -106,14 +106,14 @@ class _MenuUploadScreenState extends State<MenuUploadScreen> {
 
           const SizedBox(height: 10,),
           ListTile(
-            leading: const Icon(Icons.perm_device_information,color: Colors.black87,),
+            leading: const Icon(Icons.info,color: Colors.black87,),
             title: TextField(
               style: const TextStyle(color: Colors.black),
               maxLines: 1,
               controller: infoTextEditingController,
               decoration: const InputDecoration(
-                 hintText: "menu info",
-                hintStyle: TextStyle(color: Colors.grey),
+                 hintText: "Menu Info",
+                hintStyle: TextStyle(color: Colors.black),
                 border: InputBorder.none,
               ),
             ),
@@ -127,7 +127,7 @@ class _MenuUploadScreenState extends State<MenuUploadScreen> {
            Padding(
                padding: const EdgeInsets.all(26.0),
              child: DropdownButtonFormField(
-               hint: const Text("Select Category", style: TextStyle(color: Colors.black87),),
+               hint: const Text("Select Category", style: TextStyle(color: Colors.black),),
                items: categoryList.map<DropdownMenuItem<String>>((categoryName)
                {
                  return DropdownMenuItem(
@@ -153,6 +153,10 @@ class _MenuUploadScreenState extends State<MenuUploadScreen> {
                  menuTitleCategoryName,
                  context
                );
+                setState(() {
+                  imageFile = null;
+                  menuTitleCategoryName="";
+                });
                 Navigator.push(context, MaterialPageRoute(builder: (c)=> HomeScreen()));
                 },
               style: ElevatedButton.styleFrom(
@@ -160,7 +164,7 @@ class _MenuUploadScreenState extends State<MenuUploadScreen> {
               ),
                 child: const Text("Upload",
                 style: TextStyle(
-                  color: Colors.white60
+                  color: Colors.white
                 ),),
             ),
           )

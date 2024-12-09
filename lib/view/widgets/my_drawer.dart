@@ -44,115 +44,113 @@ class MyDrawer extends StatelessWidget {
           ),
           const SizedBox(height: 12,),
         //body
-          Container(
-            child: Column(
-              children: [
-                const Divider(
-                  height: 10,
-                  thickness: 2,
-                  color: Colors.grey,
+          Column(
+            children: [
+              const Divider(
+                height: 10,
+                thickness: 2,
+                color: Colors.grey,
 
-                ),
-                ListTile(
-                  leading: const Icon(Icons.home, color: Colors.white,),
-                  title: const Text("Home",
-                      style: TextStyle(color: Colors.white)),
-                  onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (c) => HomeScreen()));
-                  },
+              ),
+              ListTile(
+                leading: const Icon(Icons.home, color: Colors.white,),
+                title: const Text("Home",
+                    style: TextStyle(color: Colors.white)),
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (c) => HomeScreen()));
+                },
 
-                ),
+              ),
 
-                const Divider(
-                  height: 10,
-                  thickness: 2,
-                  color: Colors.grey,
+              const Divider(
+                height: 10,
+                thickness: 2,
+                color: Colors.grey,
 
-                ),
-                ListTile(
-                  leading: const Icon(Icons.currency_rupee, color: Colors.white,),
-                  title: const Text("Earnings",
-                      style: TextStyle(color: Colors.white)),
-                  onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (c) => HomeScreen()));
-                  },
+              ),
+              ListTile(
+                leading: const Icon(Icons.currency_rupee, color: Colors.white,),
+                title: const Text("Earnings",
+                    style: TextStyle(color: Colors.white)),
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (c) => HomeScreen()));
+                },
 
-                ),
+              ),
 
-                const Divider(
-                  height: 10,
-                  thickness: 2,
-                  color: Colors.grey,
+              const Divider(
+                height: 10,
+                thickness: 2,
+                color: Colors.grey,
 
-                ),
-                ListTile(
-                  leading: const Icon(Icons.shopping_bag, color: Colors.white,),
-                  title: const Text("New Orders",
-                      style: TextStyle(color: Colors.white)),
-                  onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (c) => HomeScreen()));
-                  },
+              ),
+              ListTile(
+                leading: const Icon(Icons.shopping_bag, color: Colors.white,),
+                title: const Text("New Orders",
+                    style: TextStyle(color: Colors.white)),
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (c) => HomeScreen()));
+                },
 
-                ),
+              ),
 
-                const Divider(
-                  height: 10,
-                  thickness: 2,
-                  color: Colors.grey,
+              const Divider(
+                height: 10,
+                thickness: 2,
+                color: Colors.grey,
 
-                ),
-                ListTile(
-                  leading: const Icon(Icons.inventory_2, color: Colors.white,),
-                  title: const Text("Your Orders",
-                      style: TextStyle(color: Colors.white)),
-                  onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (c) => HomeScreen()));
-                  },
+              ),
+              ListTile(
+                leading: const Icon(Icons.inventory_2, color: Colors.white,),
+                title: const Text("Your Orders",
+                    style: TextStyle(color: Colors.white)),
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (c) => HomeScreen()));
+                },
 
-                ),
+              ),
 
-                const Divider(
-                  height: 10,
-                  thickness: 2,
-                  color: Colors.grey,
+              const Divider(
+                height: 10,
+                thickness: 2,
+                color: Colors.grey,
 
-                ),
-                ListTile(
-                  leading: const Icon(Icons.edit_location_alt_sharp, color: Colors.white,),
-                  title: const Text("Change Address",
-                      style: TextStyle(color: Colors.white)),
-                  onTap: () {
-                    commonViewModel.updateLocationInDatabase();
-                    commonViewModel.showSnackBar("Your address updated successfully", context);
-                    Navigator.push(context, MaterialPageRoute(builder: (c) => HomeScreen()));
-                  },
+              ),
+              ListTile(
+                leading: const Icon(Icons.edit_location_alt_sharp, color: Colors.white,),
+                title: const Text("Change Address",
+                    style: TextStyle(color: Colors.white)),
+                onTap: () {
+                  commonViewModel.updateLocationInDatabase();
+                  commonViewModel.showSnackBar("Your address updated successfully", context);
+                  Navigator.push(context, MaterialPageRoute(builder: (c) => HomeScreen()));
+                },
 
-                ),
+              ),
 
-                const Divider(
-                  height: 10,
-                  thickness: 2,
-                  color: Colors.grey,
+              const Divider(
+                height: 10,
+                thickness: 2,
+                color: Colors.grey,
 
-                ),
-                ListTile(
-                  leading: const Icon(Icons.logout, color: Colors.white,),
-                  title: const Text("Sign Out",
-                      style: TextStyle(color: Colors.white)),
-                  onTap: () {
-                    FirebaseAuth.instance.signOut();
-                    Navigator.push(context, MaterialPageRoute(builder: (c) => mySplashScreen()));
-                  },
+              ),
+              ListTile(
+                leading: const Icon(Icons.logout, color: Colors.white,),
+                title: const Text("Sign Out",
+                    style: TextStyle(color: Colors.white)),
+                onTap: () {
+                  FirebaseAuth.instance.signOut();
+                  Navigator.push(context, MaterialPageRoute(builder: (c) => mySplashScreen()));
+                },
 
-                ),
+              ),
 
-                const Divider(
-                  height: 10,
-                  color: Colors.grey,
-                  thickness: 2,
-                )
-              ],
-            )
+              const Divider(
+                height: 10,
+                color: Colors.grey,
+                thickness: 2,
+              )
+            ],
           )
 
         ],

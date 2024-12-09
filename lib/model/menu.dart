@@ -21,7 +21,7 @@ class Menu {
     this.status
   });
 
-  Menu.fromJSON(Map<String, dynamic> json){
+  Menu.fromJson(Map<String, dynamic> json){
     menuId = json["menuId"];
     sellerUid = json["sellerUid"];
     sellerName = json["sellerName"];
