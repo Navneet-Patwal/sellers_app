@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:sellers/global/global_ins.dart';
 import 'package:sellers/global/global_var.dart';
 import 'package:sellers/view/widgets/my_appbar.dart';
+import 'package:sellers/viewModel/menu_view_model.dart';
 
 class MenuUploadScreen extends StatefulWidget {
   const MenuUploadScreen({super.key});
@@ -12,8 +13,9 @@ class MenuUploadScreen extends StatefulWidget {
 }
 
 class _MenuUploadScreenState extends State<MenuUploadScreen> {
-  TextEditingController titleTextEditingController = TextEditingController();
   TextEditingController infoTextEditingController = TextEditingController();
+  MenuViewModel menuViewModel = MenuViewModel();
+  String menuTitleCategoryName = "";
   defaultScreeen(){
     return Scaffold(
       appBar: MyAppbar(
@@ -63,7 +65,7 @@ class _MenuUploadScreenState extends State<MenuUploadScreen> {
         {
           setState(() {
             imageFile = null;
-            titleTextEditingController.clear();
+            menuTitleCategoryName="";
             infoTextEditingController.clear();
           });
         },
@@ -94,12 +96,62 @@ class _MenuUploadScreenState extends State<MenuUploadScreen> {
                 ),
               ),
             ),
-          )
+          ),
+
+          const Divider(
+            color: Colors.grey,
+            thickness: 1,
+          ),
+
+          const SizedBox(height: 10,),
+          ListTile(
+            leading: const Icon(Icons.perm_device_information,color: Colors.black87,),
+            title: TextField(
+              style: const TextStyle(color: Colors.black),
+              maxLines: 1,
+              controller: infoTextEditingController,
+              decoration: const InputDecoration(
+                 hintText: "menu info",
+                hintStyle: TextStyle(color: Colors.grey),
+                border: InputBorder.none,
+              ),
+            ),
+          ),
+
+          const Divider(
+            color: Colors.grey,
+            thickness: 1,
+          ),
+
+           Padding(
+               padding: const EdgeInsets.all(26.0),
+             child: DropdownButtonFormField(
+                 hint: Text("Select Category", style: TextStyle(color: Colors.black87),),
+               items: categoryList.map<DropdownMenuItem<String>>((categoryName)
+               {
+                 return DropdownMenuItem(
+                   value: categoryName,
+                   child: Text(categoryName),
+                 );
+               }).toList(),
+               onChanged: (value){
+                    setState(() {
+                      menuTitleCategoryName = value.toString();
+                    });
+                    commonViewModel.showSnackBar(menuTitleCategoryName, context);
+               },
+             ),
+           )
         ],
       ),
     );
   }
   @override
+  void initState(){
+    // TODO implement initState
+    super.initState();
+    menuViewModel.getCategories();
+  }
   Widget build(BuildContext context) {
     return imageFile==null?defaultScreeen():uploadMenuFormScreen();
   }

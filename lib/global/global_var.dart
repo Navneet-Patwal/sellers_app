@@ -9,3 +9,4 @@ String fullAddress = "";
 SharedPreferences? sharedPreferences;
 XFile? imageFile;
 ImagePicker pickerImage = ImagePicker();
+List<String> categoryList = [];
