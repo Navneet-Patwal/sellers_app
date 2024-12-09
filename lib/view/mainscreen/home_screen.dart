@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:sellers/global/global_ins.dart';
 import 'package:sellers/global/global_var.dart';
-import 'package:sellers/view/mainscreen/menu_upload_screen.dart';
+import 'package:sellers/view/mainscreen/menus/menu_upload_screen.dart';
 import 'package:sellers/view/widgets/menu_ui_design.dart';
 import 'package:sellers/view/widgets/my_appbar.dart';
 import 'package:sellers/view/widgets/my_drawer.dart';
@@ -21,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: MyDrawer(),
+      drawer: const MyDrawer(),
       appBar: MyAppbar(
           titleMsg: sharedPreferences!.getString("name").toString(),
           showBackButton: false,

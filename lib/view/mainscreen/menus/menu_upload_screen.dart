@@ -13,16 +13,19 @@ class MenuUploadScreen extends StatefulWidget {
   State<MenuUploadScreen> createState() => _MenuUploadScreenState();
 }
 
-class _MenuUploadScreenState extends State<MenuUploadScreen> {
+class _MenuUploadScreenState extends State<MenuUploadScreen>
+{
   TextEditingController infoTextEditingController = TextEditingController();
   MenuViewModel menuViewModel = MenuViewModel();
   String menuTitleCategoryName = "";
+
   defaultScreen(){
     return Scaffold(
       appBar: MyAppbar(
           titleMsg: "Add New Menu",
           showBackButton: true
       ),
+
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -54,6 +57,7 @@ class _MenuUploadScreenState extends State<MenuUploadScreen> {
       ),
     );
   }
+
   uploadMenuFormScreen(){
     return Scaffold(
       appBar: MyAppbar(
@@ -128,13 +132,14 @@ class _MenuUploadScreenState extends State<MenuUploadScreen> {
                padding: const EdgeInsets.all(26.0),
              child: DropdownButtonFormField(
                hint: const Text("Select Category", style: TextStyle(color: Colors.black),),
+
                items: categoryList.map<DropdownMenuItem<String>>((categoryName)
-               {
-                 return DropdownMenuItem(
-                   value: categoryName,
-                   child: Text(categoryName),
-                 );
-               }).toList(),
+             {
+               return DropdownMenuItem(
+                 value: categoryName,
+                 child: Text(categoryName),
+               );
+             }).toSet().toList(),
                onChanged: (value){
                     setState(() {
                       menuTitleCategoryName = value.toString();
@@ -155,7 +160,6 @@ class _MenuUploadScreenState extends State<MenuUploadScreen> {
                );
                 setState(() {
                   imageFile = null;
-                  menuTitleCategoryName="";
                 });
                 Navigator.push(context, MaterialPageRoute(builder: (c)=> HomeScreen()));
                 },
