@@ -15,8 +15,6 @@ class SignupScreen extends StatefulWidget {
 }
 
 class _SignupScreenState extends State<SignupScreen> {
-  XFile? imageFile;
-  ImagePicker pickerImage = ImagePicker();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   TextEditingController nameTextEditingController = TextEditingController();
   TextEditingController emailTextEditingController = TextEditingController();
@@ -26,18 +24,6 @@ class _SignupScreenState extends State<SignupScreen> {
   TextEditingController locationTextEditingController = TextEditingController();
 
 
-
-  pickImageFromGallery() async
-  {
-     imageFile = await pickerImage.pickImage(source: ImageSource.gallery);
-
-     setState(() {
-        imageFile;
-     });
-  }
-
-
-
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -45,9 +31,12 @@ class _SignupScreenState extends State<SignupScreen> {
         children: [
           const SizedBox(height: 11,),
           InkWell(
-            onTap: ()
+            onTap: () async
             {
-              pickImageFromGallery();
+              await commonViewModel.pickImageFromGallery();
+              setState(() {
+                imageFile;
+              });
             },
             child: CircleAvatar(
               radius: MediaQuery.of(context).size.width*0.20,
@@ -155,6 +144,9 @@ class _SignupScreenState extends State<SignupScreen> {
                         fullAddress,
                         context
                     );
+                    setState(() {
+                      imageFile = null;
+                    });
                   },
                   style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blueAccent,
