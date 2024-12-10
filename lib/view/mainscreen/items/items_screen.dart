@@ -8,6 +8,7 @@ import 'package:sellers/view/widgets/my_appbar.dart';
 import 'package:sellers/view/widgets/my_drawer.dart';
 
 import '../../../model/menu.dart';
+import 'items_upload_screen.dart';
 
 
 
@@ -37,7 +38,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
             backgroundColor: Colors.black87,
             onPressed: ()
             {
-              Navigator.push(context, MaterialPageRoute(builder: (c)=> MenuUploadScreen()));
+              Navigator.push(context, MaterialPageRoute(builder: (c)=> ItemUploadScreen(menuModel: widget.menuModel,)));
             },
             child: const Text(
               "Add New Item",

@@ -16,7 +16,6 @@ class MenuUploadScreen extends StatefulWidget {
 class _MenuUploadScreenState extends State<MenuUploadScreen>
 {
   TextEditingController infoTextEditingController = TextEditingController();
-  MenuViewModel menuViewModel = MenuViewModel();
   String menuTitleCategoryName = "";
 
   defaultScreen(){
