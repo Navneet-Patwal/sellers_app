@@ -1,12 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:sellers/global/global_ins.dart';
-import 'package:sellers/global/global_var.dart';
-import 'package:sellers/view/mainscreen/menus/menu_upload_screen.dart';
-import 'package:sellers/view/widgets/menu_ui_design.dart';
 import 'package:sellers/view/widgets/my_appbar.dart';
-import 'package:sellers/view/widgets/my_drawer.dart';
-
 import '../../../model/item.dart';
 import '../../../model/menu.dart';
 import '../../widgets/item_ui_design.dart';
