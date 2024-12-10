@@ -81,11 +81,23 @@ class ItemViewModel {
         "price": int.parse(priceText),
         "publishedDateTime": DateTime.now(),
         "status": "available",
+        "isRecommended":false,
+        "isPopular": false
       });
 
     });
     commonViewModel.showSnackBar("Uploaded Successfully!", context);
 
+
+  }
+
+
+  retrieveItems(menuId){
+    return FirebaseFirestore.instance.collection("sellers")
+        .doc(sharedPreferences!.getString("uid"))
+        .collection("menus").doc(menuId)
+        .collection("items").orderBy("publishedDateTime", descending: true)
+        .snapshots();
 
   }
 

@@ -7,7 +7,9 @@ import 'package:sellers/view/widgets/menu_ui_design.dart';
 import 'package:sellers/view/widgets/my_appbar.dart';
 import 'package:sellers/view/widgets/my_drawer.dart';
 
+import '../../../model/item.dart';
 import '../../../model/menu.dart';
+import '../../widgets/item_ui_design.dart';
 import 'items_upload_screen.dart';
 
 
@@ -27,10 +29,10 @@ class _ItemsScreenState extends State<ItemsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        drawer: MyDrawer(),
+       // drawer: MyDrawer(),
         appBar: MyAppbar(
           titleMsg: widget.menuModel!.menuTitle.toString() + "'s Items",
-          showBackButton: false,
+          showBackButton: true,
         ),
         floatingActionButton: SizedBox(
           width: 120,
@@ -50,7 +52,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
           ),
         ),
         body: StreamBuilder<QuerySnapshot>(
-          stream: menuViewModel.retrieveMenus(),
+          stream: itemViewModel.retrieveItems(widget.menuModel!.menuId),
           builder: (context, snapShot){
             return !snapShot.hasData ?
             const Center(
@@ -59,17 +61,17 @@ class _ItemsScreenState extends State<ItemsScreen> {
             ListView.builder(
                 itemCount: snapShot.data!.docs.length,
                 itemBuilder: (context, index){
-                  return Container();
-                  // Menu menuModel = Menu.fromJson(
-                  //     snapShot.data!.docs[index].data()! as Map<String, dynamic>
-                  // );
-                  // return Card(
-                  //   elevation: 6,
-                  //   color: Colors.black87,
-                  //   child: MenuUiDesign(
-                  //     menuModel: menuModel,
-                  //   ),
-                  // );
+
+                 Item itemModel = Item.fromJson(
+                      snapShot.data!.docs[index].data()! as Map<String, dynamic>
+                  );
+                  return Card(
+                    elevation: 6,
+                    color: Colors.black87,
+                    child: ItemUiDesign(
+                      itemModel: itemModel,
+                    ),
+                  );
                 }
             );
           },
