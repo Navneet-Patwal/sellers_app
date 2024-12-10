@@ -4,7 +4,6 @@ import '../../model/item.dart';
 
 
 class ItemUiDesign extends StatefulWidget {
-
   Item? itemModel;
   ItemUiDesign({super.key, this.itemModel});
 
