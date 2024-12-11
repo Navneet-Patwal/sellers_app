@@ -64,7 +64,7 @@ class _MenuUploadScreenState extends State<MenuUploadScreen>
           showBackButton: true,
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.black87,
+        backgroundColor: Colors.black,
         onPressed: ()
         {
           setState(() {
@@ -136,7 +136,7 @@ class _MenuUploadScreenState extends State<MenuUploadScreen>
              {
                return DropdownMenuItem(
                  value: categoryName,
-                 child: Text(categoryName),
+                 child: Text(categoryName,style: const TextStyle(color: Colors.black),),
                );
              }).toSet().toList(),
                onChanged: (value){
@@ -159,6 +159,7 @@ class _MenuUploadScreenState extends State<MenuUploadScreen>
                );
                 setState(() {
                   imageFile = null;
+                  categoryList = [];
                 });
                 Navigator.push(context, MaterialPageRoute(builder: (c)=> HomeScreen()));
                 },
