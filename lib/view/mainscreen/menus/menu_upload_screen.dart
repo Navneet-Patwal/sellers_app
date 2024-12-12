@@ -135,7 +135,7 @@ class _MenuUploadScreenState extends State<MenuUploadScreen>
              {
                return DropdownMenuItem(
                  value: categoryName,
-                 child: Text(categoryName,style: const TextStyle(color: Colors.black),),
+                 child: Text(categoryName,style: const TextStyle(color: Colors.white),),
                );
              }).toSet().toList(),
                onChanged: (value){
