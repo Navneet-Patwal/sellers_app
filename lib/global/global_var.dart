@@ -10,3 +10,4 @@ SharedPreferences? sharedPreferences;
 XFile? imageFile;
 ImagePicker pickerImage = ImagePicker();
 List<String> categoryList = [];
+double? sellersTotalEarnings = 0.0;

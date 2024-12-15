@@ -2,7 +2,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sellers/global/global_ins.dart';
 import 'package:sellers/global/global_var.dart';
+import 'package:sellers/view/mainscreen/earnings_screen.dart';
+import 'package:sellers/view/mainscreen/history_screen.dart';
 import 'package:sellers/view/mainscreen/home_screen.dart';
+import 'package:sellers/view/mainscreen/new_orders_screen.dart';
 
 import '../splashScreen/splash_screen.dart';
 
@@ -73,7 +76,7 @@ class MyDrawer extends StatelessWidget {
                 title: const Text("Earnings",
                     style: TextStyle(color: Colors.white)),
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (c) => HomeScreen()));
+                  Navigator.push(context, MaterialPageRoute(builder: (c) => const EarningsScreen()));
                 },
 
               ),
@@ -89,7 +92,7 @@ class MyDrawer extends StatelessWidget {
                 title: const Text("New Orders",
                     style: TextStyle(color: Colors.white)),
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (c) => HomeScreen()));
+                  Navigator.push(context, MaterialPageRoute(builder: (c) => const NewOrdersScreen()));
                 },
 
               ),
@@ -105,7 +108,7 @@ class MyDrawer extends StatelessWidget {
                 title: const Text("Your Orders",
                     style: TextStyle(color: Colors.white)),
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (c) => HomeScreen()));
+                  Navigator.push(context, MaterialPageRoute(builder: (c) => const HistoryScreen()));
                 },
 
               ),

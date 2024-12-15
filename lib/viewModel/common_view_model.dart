@@ -88,4 +88,13 @@ class CommonViewModel{
          }
      );
   }
+
+  retrieveSellersEarnings() async {
+    await FirebaseFirestore.instance
+        .collection("sellers")
+        .doc(sharedPreferences!.getString("uid"))
+        .get().then((snap){
+             sellersTotalEarnings= double.parse(snap.data()!["earnings"].toString());
+    });
+  }
 }

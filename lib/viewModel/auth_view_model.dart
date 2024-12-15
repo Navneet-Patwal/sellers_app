@@ -23,7 +23,6 @@ class AuthViewModel{
           commonViewModel.showSnackBar("Please Wait!", context);
 
           User? currentFirebaseUser = await createUserInFirebaseAuth(email,password,context);
-          //TODO uploadImageToStorage()
           String downloadUrl = "https://plus.unsplash.com/premium_vector-1721131162373-2d0df1719f5e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTg3fHxwZXJzb258ZW58MHx8MHx8fDA%3D";
           await saveUserDataToFireStore(currentFirebaseUser, downloadUrl, name,email,password,locationAddress,phone);
           Navigator.push(context, MaterialPageRoute(builder: (c)=> HomeScreen()));
