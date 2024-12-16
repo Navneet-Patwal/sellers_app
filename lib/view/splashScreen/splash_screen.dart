@@ -6,7 +6,6 @@ import 'package:sellers/view/mainscreen/home_screen.dart';
 
 class mySplashScreen extends StatefulWidget {
   const mySplashScreen({super.key});
-
   @override
   State<mySplashScreen> createState() => _mySplashScreenState();
 }
