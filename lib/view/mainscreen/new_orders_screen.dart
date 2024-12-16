@@ -19,7 +19,20 @@ class _NewOrdersScreenState extends State<NewOrdersScreen> {
       body: StreamBuilder<QuerySnapshot>(
           stream:ordersViewModel.getNewOrders(),
           builder: (c, snapshot){
-            return snapshot.hasData ?
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(child: CircularProgressIndicator(color: Colors.black,)); // Show loading indicator
+            }
+
+            // Check for errors
+            if (snapshot.hasError) {
+              return const Center(child: Text("Error loading data"));
+            }
+
+            // Check if there is no data
+            if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+              return const Center(child: Text("No new orders", style: TextStyle(color: Colors.black, fontSize:20),));
+            }
+            return
             ListView.builder(
               itemCount: snapshot.data!.docs.length,
                 itemBuilder: (c, index){
@@ -44,9 +57,7 @@ class _NewOrdersScreenState extends State<NewOrdersScreen> {
                         const Center(child: CircularProgressIndicator(),);
                   }
                 );
-                })
-                :
-                const Center(child: CircularProgressIndicator(),);
+                });
           }),
     );
   }

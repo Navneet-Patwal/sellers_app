@@ -29,7 +29,7 @@ class _MenuUploadScreenState extends State<MenuUploadScreen>
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Icon(
-              Icons.shop_two,
+              Icons.add_business,
               color: Colors.black87,
               size: 200,
             ),
@@ -128,21 +128,31 @@ class _MenuUploadScreenState extends State<MenuUploadScreen>
 
            Padding(
                padding: const EdgeInsets.all(26.0),
-             child: DropdownButtonFormField(
-               hint: const Text("Select Category", style: TextStyle(color: Colors.black),),
-
-               items: categoryList.map<DropdownMenuItem<String>>((categoryName)
-             {
-               return DropdownMenuItem(
-                 value: categoryName,
-                 child: Text(categoryName,style: const TextStyle(color: Colors.white),),
-               );
-             }).toSet().toList(),
-               onChanged: (value){
-                    setState(() {
-                      menuTitleCategoryName = value.toString();
-                    });
-                    commonViewModel.showSnackBar(menuTitleCategoryName, context);
+             child: DropdownButtonFormField<String>(
+               hint: const Text("Select Category", style: TextStyle(color: Colors.black)),
+               items: categoryList.map<DropdownMenuItem<String>>((categoryName) {
+                 return DropdownMenuItem<String>(
+                   value: categoryName,
+                   child: Text(
+                     categoryName,
+                     style: const TextStyle(color: Colors.white), // White text for dropdown options
+                   ),
+                 );
+               }).toSet().toList(),
+               onChanged: (value) {
+                 setState(() {
+                   menuTitleCategoryName = value.toString();
+                 });
+                 commonViewModel.showSnackBar(menuTitleCategoryName, context);
+               },
+               dropdownColor: Colors.black, // Black background for the dropdown
+               selectedItemBuilder: (BuildContext context) {
+                 return categoryList.map<Widget>((categoryName) {
+                   return Text(
+                     categoryName,
+                     style: const TextStyle(color: Colors.black), // Black text for the selected item
+                   );
+                 }).toList();
                },
              ),
            ),
@@ -160,7 +170,7 @@ class _MenuUploadScreenState extends State<MenuUploadScreen>
                   imageFile = null;
                   categoryList = [];
                 });
-                Navigator.push(context, MaterialPageRoute(builder: (c)=> HomeScreen()));
+                Navigator.push(context, MaterialPageRoute(builder: (c)=> const HomeScreen()));
                 },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.black87,

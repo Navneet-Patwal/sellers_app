@@ -39,10 +39,10 @@ class _HomeScreenState extends State<HomeScreen> {
           backgroundColor: Colors.black87,
             onPressed: ()
             {
-              Navigator.push(context, MaterialPageRoute(builder: (c)=> MenuUploadScreen()));
+              Navigator.push(context, MaterialPageRoute(builder: (c)=> const MenuUploadScreen()));
             },
             child: const Text(
-            "Add New Menu",
+            "➕ New Menu",
               style: TextStyle(
                 fontSize: 15,
                 color: Colors.white
@@ -53,10 +53,20 @@ class _HomeScreenState extends State<HomeScreen> {
       body: StreamBuilder<QuerySnapshot>(
           stream: menuViewModel.retrieveMenus(),
         builder: (context, snapShot){
-            return !snapShot.hasData ?
-             const Center(
-             child: Text("No data available")
-            ):
+          if (snapShot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator(color: Colors.black,)); // Show loading indicator
+          }
+
+          // Check for errors
+          if (snapShot.hasError) {
+            return const Center(child: Text("Error loading data"));
+          }
+
+          // Check if there is no data
+          if (!snapShot.hasData || snapShot.data!.docs.isEmpty) {
+            return const Center(child: Text("No menus found! Add new menu"));
+          }
+            return
                 ListView.builder(
                   itemCount: snapShot.data!.docs.length,
                     itemBuilder: (context, index){

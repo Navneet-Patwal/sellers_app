@@ -85,10 +85,10 @@ class MyDrawer extends StatelessWidget {
                 height: 10,
                 thickness: 2,
                 color: Colors.grey,
-
               ),
+
               ListTile(
-                leading: const Icon(Icons.shopping_bag, color: Colors.white,),
+                leading: const Icon(Icons.new_releases, color: Colors.white,),
                 title: const Text("New Orders",
                     style: TextStyle(color: Colors.white)),
                 onTap: () {
@@ -104,8 +104,8 @@ class MyDrawer extends StatelessWidget {
 
               ),
               ListTile(
-                leading: const Icon(Icons.inventory_2, color: Colors.white,),
-                title: const Text("Your Orders",
+                leading: const Icon(Icons.access_time, color: Colors.white,),
+                title: const Text("Orders History",
                     style: TextStyle(color: Colors.white)),
                 onTap: () {
                   Navigator.push(context, MaterialPageRoute(builder: (c) => const HistoryScreen()));

@@ -25,7 +25,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
     return Scaffold(
        // drawer: MyDrawer(),
         appBar: MyAppbar(
-          titleMsg: widget.menuModel!.menuTitle.toString() + "'s Items",
+          titleMsg: widget.menuModel!.menuTitle.toString().toUpperCase() + "'s Items",
           showBackButton: true,
         ),
         floatingActionButton: SizedBox(
@@ -48,10 +48,21 @@ class _ItemsScreenState extends State<ItemsScreen> {
         body: StreamBuilder<QuerySnapshot>(
           stream: itemViewModel.retrieveItems(widget.menuModel!.menuId),
           builder: (context, snapShot){
-            return !snapShot.hasData ?
-            const Center(
-                child: Text("No data available")
-            ):
+            if (snapShot.connectionState == ConnectionState.waiting) {
+              return const Center(child: CircularProgressIndicator(color: Colors.black,)); // Show loading indicator
+            }
+
+            // Check for errors
+            if (snapShot.hasError) {
+              return const Center(child: Text("Error loading data"));
+            }
+
+            // Check if there is no data
+            if (!snapShot.hasData || snapShot.data!.docs.isEmpty) {
+              return const Center(child: Text("No Items found Add items to get started",
+              style: TextStyle(color: Colors.black, fontSize: 20),));
+            }
+            return
             ListView.builder(
                 itemCount: snapShot.data!.docs.length,
                 itemBuilder: (context, index){

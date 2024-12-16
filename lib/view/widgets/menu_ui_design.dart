@@ -40,8 +40,10 @@ class _MenuUiDesignState extends State<MenuUiDesign> {
                   fontFamily: "Train",
                 ),
                 ),
-                IconButton(onPressed: (){},
-                    icon: const Icon(Icons.delete_sweep_outlined,
+                IconButton(onPressed: (){
+                  //to delete it
+                },
+                    icon: const Icon(Icons.delete,
                     color: Colors.white,))
               ],
             )

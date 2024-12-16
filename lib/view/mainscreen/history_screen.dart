@@ -21,6 +21,19 @@ class _HistoryScreenState extends State<HistoryScreen> {
       body: StreamBuilder<QuerySnapshot>(
         stream: ordersViewModel.retrieveOrderHistory(),
         builder: (c, snapshot){
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator(color: Colors.black,)); // Show loading indicator
+          }
+
+          // Check for errors
+          if (snapshot.hasError) {
+            return const Center(child: Text("Error loading data"));
+          }
+
+          // Check if there is no data
+          if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+            return const Center(child: Text("No history!", style: TextStyle(color: Colors.black, fontSize:20)));
+          }
           return snapshot.hasData ?
           ListView.builder(
               itemCount: snapshot.data!.docs.length,
