@@ -132,7 +132,7 @@ class AuthViewModel{
               await sharedPreferences!.setString("uid",currentFirebaseUser.uid);
               await sharedPreferences!.setString("email", dataSnapShot.data()!["email"] );
               await sharedPreferences!.setString("name", dataSnapShot.data()!["name"] );
-              await sharedPreferences!.setString("imagesUrl", dataSnapShot.data()!["image"] );
+              await sharedPreferences!.setString("imageUrl", dataSnapShot.data()!["image"] );
             }
             else{
               commonViewModel.showSnackBar("you are blocked.", context);

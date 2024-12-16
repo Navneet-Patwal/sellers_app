@@ -30,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       drawer: const MyDrawer(),
       appBar: MyAppbar(
-          titleMsg: sharedPreferences!.getString("name").toString(),
+          titleMsg: "Welcome! ${sharedPreferences!.getString("name").toString()}",
           showBackButton: false,
       ),
       floatingActionButton: SizedBox(
@@ -76,4 +76,5 @@ class _HomeScreenState extends State<HomeScreen> {
       )
     );
   }
+
 }

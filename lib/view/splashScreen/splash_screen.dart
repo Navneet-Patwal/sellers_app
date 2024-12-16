@@ -17,9 +17,9 @@ class _mySplashScreenState extends State<mySplashScreen> {
     Timer(const Duration(seconds: 3),() async
     {
       if( FirebaseAuth.instance.currentUser == null){
-        Navigator.push(context, MaterialPageRoute(builder: (c)=>AuthScreen()));
+        Navigator.push(context, MaterialPageRoute(builder: (c)=>const AuthScreen()));
       } else {
-        Navigator.push(context, MaterialPageRoute(builder: (c)=>HomeScreen()));
+        Navigator.push(context, MaterialPageRoute(builder: (c)=>const HomeScreen()));
       }
 
     });
@@ -34,6 +34,7 @@ class _mySplashScreenState extends State<mySplashScreen> {
   }
 
   Widget build(BuildContext context) {
+
     return Scaffold(
       body: Center(
         child: Column(
