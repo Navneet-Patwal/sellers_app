@@ -25,12 +25,12 @@ class _NewOrdersScreenState extends State<NewOrdersScreen> {
 
             // Check for errors
             if (snapshot.hasError) {
-              return const Center(child: Text("Error loading data"));
+              return const Center(child: Text("Error loading orders"));
             }
 
             // Check if there is no data
             if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-              return const Center(child: Text("No new orders", style: TextStyle(color: Colors.black, fontSize:20),));
+              return const Center(child: Text("No new orders", style: TextStyle(color: Colors.black, fontSize:25),));
             }
             return
             ListView.builder(

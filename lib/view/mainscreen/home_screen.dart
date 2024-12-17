@@ -41,13 +41,21 @@ class _HomeScreenState extends State<HomeScreen> {
             {
               Navigator.push(context, MaterialPageRoute(builder: (c)=> const MenuUploadScreen()));
             },
-            child: const Text(
-            "➕ New Menu",
-              style: TextStyle(
-                fontSize: 15,
-                color: Colors.white
-              ),
-        ),
+            child: const Row(
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(left: 5,right: 2),
+                  child: Icon(Icons.add,color: Colors.white,),
+                ),
+                 Text(
+                "New Menu",
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: Colors.white
+                  ),
+                        ),
+              ],
+            ),
         ),
       ),
       body: StreamBuilder<QuerySnapshot>(

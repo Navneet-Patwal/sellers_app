@@ -1,8 +1,7 @@
+
 import 'dart:io';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:geocoding/geocoding.dart';
-import 'package:geolocator/geolocator.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:sellers/global/global_var.dart';
 import '../widgets/custom_text_feild.dart';
 import '../../global/global_ins.dart';
@@ -15,6 +14,9 @@ class SignupScreen extends StatefulWidget {
 }
 
 class _SignupScreenState extends State<SignupScreen> {
+   final FirebaseAuth _auth = FirebaseAuth.instance;
+
+
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   TextEditingController nameTextEditingController = TextEditingController();
   TextEditingController emailTextEditingController = TextEditingController();
@@ -22,6 +24,53 @@ class _SignupScreenState extends State<SignupScreen> {
   TextEditingController confirmPasswordTextEditingController = TextEditingController();
   TextEditingController phoneTextEditingController = TextEditingController();
   TextEditingController locationTextEditingController = TextEditingController();
+  TextEditingController otpController = TextEditingController();
+
+
+  String _verificationId ="";
+  bool _otpSent = false;
+
+  void _sendOtp() async{
+    String phoneNumber = phoneTextEditingController.text.trim();
+    await _auth.verifyPhoneNumber(
+        phoneNumber: phoneNumber,
+        timeout: const Duration(seconds: 60),
+        verificationCompleted: (PhoneAuthCredential credential) async
+        {
+          await _auth.signInWithCredential(credential);
+        },
+    verificationFailed: (FirebaseAuthException e){
+
+    },
+    codeSent: (String verfiactionId, int? resendToken){
+          setState(() {
+            _verificationId = verfiactionId;
+            _otpSent = true;
+          });
+    },
+    codeAutoRetrievalTimeout: (String verificationId){
+          _verificationId = verificationId;
+    });
+  }
+
+ bool flag=false;
+
+void _verifyOtp() async{
+    String otp = otpController.text.trim();
+    try{
+      PhoneAuthCredential credential =
+          PhoneAuthProvider.credential(verificationId: _verificationId, smsCode: otp);
+         UserCredential userCredential =
+             await _auth.signInWithCredential(credential);
+         if(userCredential.user!=null){
+           flag=true;
+           commonViewModel.showSnackBar("OTP Verified", context);
+
+         }
+    } catch(e){
+      commonViewModel.showSnackBar("Invalid OTP", context);
+    }
+  }
 
 
   @override
@@ -98,6 +147,14 @@ class _SignupScreenState extends State<SignupScreen> {
                   isObscure: false,
                   enabled: true,
                 ),
+              _otpSent?
+                CustomTextField(
+                  textEditingController: otpController,
+                  iconData: Icons.my_location,
+                  hintString: "OTP",
+                  isObscure: false,
+                  enabled: true,
+                ):Container(),
 
                 Container(
                   width: 398,
@@ -131,7 +188,8 @@ class _SignupScreenState extends State<SignupScreen> {
                   ),
                 ),
                 const SizedBox(height: 20,),
-                ElevatedButton(
+                !_otpSent ? ElevatedButton(onPressed: _sendOtp, child: const Text("Send OTP")): ElevatedButton(onPressed: _verifyOtp, child: const Text("Verify OTP")),
+                flag?ElevatedButton(
                   onPressed: () async
                   {
                     authViewModel.ValidateSignUpForm(
@@ -159,7 +217,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                ),
+                ): Container(),
                 const SizedBox(height: 32,)
               ],
             ),

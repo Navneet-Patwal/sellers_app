@@ -27,12 +27,12 @@ class _HistoryScreenState extends State<HistoryScreen> {
 
           // Check for errors
           if (snapshot.hasError) {
-            return const Center(child: Text("Error loading data"));
+            return const Center(child: Text("Error loading history",style: TextStyle(color: Colors.black, fontSize:25)));
           }
 
           // Check if there is no data
           if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-            return const Center(child: Text("No history!", style: TextStyle(color: Colors.black, fontSize:20)));
+            return const Center(child: Text("No History", style: TextStyle(color: Colors.black, fontSize:25)));
           }
           return snapshot.hasData ?
           ListView.builder(

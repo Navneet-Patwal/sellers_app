@@ -28,10 +28,27 @@ class MyDrawer extends StatelessWidget {
                   child: SizedBox(
                     height: 158,
                     width: 158,
-                    child: CircleAvatar(
-                      backgroundImage: NetworkImage(
-                        sharedPreferences!.getString("imageUrl").toString()
-                      ),
+                    child: Stack(
+                      children: [
+                        CircleAvatar(
+                          radius:81,
+                          backgroundImage: NetworkImage(
+                              sharedPreferences!.getString("imageUrl").toString()
+                          ),
+                        ),
+                        Positioned(
+                            right: 0,
+                            top:0,
+                            child: Container(
+                              width: 40,
+                              height: 40,
+                              decoration:const BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.white,
+                              ),
+                              child: IconButton(onPressed: (){}, icon: const Icon(Icons.edit, size: 25,color: Colors.black45,),),
+                            ))
+                      ],
                     ),
                   )
                 ),
