@@ -44,7 +44,7 @@ class _mySplashScreenState extends State<mySplashScreen> {
               ),
             ),
             const Text(
-              "Sellers App",
+              "Green Stack",
               textAlign: TextAlign.center,
               style: TextStyle(
                 letterSpacing: 3,
