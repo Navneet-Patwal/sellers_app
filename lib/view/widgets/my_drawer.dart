@@ -143,7 +143,7 @@ class MyDrawer extends StatelessWidget {
                 onTap: () {
                   commonViewModel.updateLocationInDatabase();
                   commonViewModel.showSnackBar("Your address updated successfully", context);
-                  Navigator.push(context, MaterialPageRoute(builder: (c) => HomeScreen()));
+                  Navigator.push(context, MaterialPageRoute(builder: (c) => const HomeScreen()));
                 },
 
               ),

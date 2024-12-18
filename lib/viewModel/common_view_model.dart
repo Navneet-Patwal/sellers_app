@@ -8,7 +8,7 @@ import '../global/global_var.dart';
 
 class CommonViewModel{
   getCurrentLocation() async {
-    Position cPosition = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+    Position cPosition = await Geolocator.getCurrentPosition();
     position = cPosition;
     placeMark = await placemarkFromCoordinates (cPosition.latitude, cPosition.longitude);
     Placemark placeMarkVar = placeMark![0];

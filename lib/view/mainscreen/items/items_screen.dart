@@ -54,12 +54,12 @@ class _ItemsScreenState extends State<ItemsScreen> {
 
             // Check for errors
             if (snapShot.hasError) {
-              return const Center(child: Text("Error loading data"));
+              return const Center(child: Text("Error loading data",style: TextStyle(fontSize: 20,color: Colors.black)));
             }
 
             // Check if there is no data
             if (!snapShot.hasData || snapShot.data!.docs.isEmpty) {
-              return const Center(child: Text("No Items found Add items to get started",
+              return const Center(child: Text("No Items found. Add items to get started",
               style: TextStyle(color: Colors.black, fontSize: 20),));
             }
             return

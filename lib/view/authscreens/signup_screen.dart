@@ -189,7 +189,7 @@ void _verifyOtp() async{
                 ),
                 const SizedBox(height: 20,),
                 !_otpSent ? ElevatedButton(onPressed: _sendOtp, child: const Text("Send OTP")): ElevatedButton(onPressed: _verifyOtp, child: const Text("Verify OTP")),
-                flag?ElevatedButton(
+                !flag?ElevatedButton(
                   onPressed: () async
                   {
                     authViewModel.ValidateSignUpForm(

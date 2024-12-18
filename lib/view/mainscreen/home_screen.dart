@@ -67,12 +67,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
           // Check for errors
           if (snapShot.hasError) {
-            return const Center(child: Text("Error loading data"));
+            return const Center(child: Text("Error loading data",style: TextStyle(fontSize: 20,color: Colors.black)));
           }
 
           // Check if there is no data
           if (!snapShot.hasData || snapShot.data!.docs.isEmpty) {
-            return const Center(child: Text("No menus found! Add new menu"));
+            return const Center(child: Text("No menus found! Add new menu",style: TextStyle(fontSize: 20,color: Colors.black),));
           }
             return
                 ListView.builder(
