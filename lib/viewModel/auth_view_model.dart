@@ -30,9 +30,7 @@ class AuthViewModel{
             ).then((valueAuth) {
               currentFirebaseUser = valueAuth.user;
             });
-
             //currentFirebaseUser = await createUserInFirebaseAuth(email,password,name,phone,locationAddress,context);
-
             String downloadUrl = "https://plus.unsplash.com/premium_vector-1721131162373-2d0df1719f5e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTg3fHxwZXJzb258ZW58MHx8MHx8fDA%3D";
             await saveUserDataToFireStoreForNewUser(currentFirebaseUser, downloadUrl, name,email,password,locationAddress,phone);
             Navigator.pushReplacement(context, MaterialPageRoute(builder: (c)=> const HomeScreen()));
@@ -41,11 +39,22 @@ class AuthViewModel{
 
           } on FirebaseAuthException catch(e) {
             if(e.code == 'email-already-in-use'){
-              await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password).then((value){
-                currentFirebaseUser = value.user;
-              });
+              // await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password).then((value){
+              //   currentFirebaseUser = value.user;
+              // });
+
+              try{
+                await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password).then((value){
+                  currentFirebaseUser = value.user;
+                });
+              } on FirebaseAuthException catch(e){
+                if(e.code == "wrong-password"){
+                  currentFirebaseUser = null;
+                }
+              }
               if(currentFirebaseUser == null){
                 commonViewModel.showSnackBar("You are already registered with database type password of another app and signup", context);
+                return;
               }
                 DocumentSnapshot userDoc = await FirebaseFirestore.instance.collection("sellers").doc(currentFirebaseUser!.uid).get();
                 if(userDoc.exists && userDoc["loggedInApp"] == "seller"){
