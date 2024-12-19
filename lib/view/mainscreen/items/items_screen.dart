@@ -26,7 +26,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
     return Scaffold(
        // drawer: MyDrawer(),
         appBar: MyAppbar(
-          titleMsg: widget.menuModel!.menuTitle.toString().toUpperCase() + "'s Items",
+          titleMsg: "${widget.menuModel!.menuTitle.toString().toUpperCase()}'s Items",
           showBackButton: true,
         ),
         floatingActionButton: SizedBox(
