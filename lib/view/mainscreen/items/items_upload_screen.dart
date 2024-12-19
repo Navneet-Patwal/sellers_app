@@ -4,7 +4,6 @@ import 'package:sellers/global/global_ins.dart';
 import 'package:sellers/global/global_var.dart';
 import 'package:sellers/view/mainscreen/home_screen.dart';
 import 'package:sellers/view/widgets/my_appbar.dart';
-import 'package:sellers/viewModel/menu_view_model.dart';
 
 import '../../../model/menu.dart';
 
@@ -240,6 +239,7 @@ class _ItemUploadScreenState extends State<ItemUploadScreen>
     super.initState();
     menuViewModel.getCategories();
   }
+  @override
   Widget build(BuildContext context) {
     return imageFile==null?defaultScreen():uploadItemFormScreen();
   }

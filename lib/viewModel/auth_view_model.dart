@@ -5,13 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:sellers/global/global_ins.dart';
 import 'package:sellers/global/global_var.dart';
-import 'package:sellers/view/authscreens/signin_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../view/mainscreen/home_screen.dart';
 //import 'package:firebase_storage/firebase_storage.dart' as fStorage;
 
 class AuthViewModel{
-  ValidateSignUpForm(XFile? imageXFile,String password, String confirmPassword, String name, String email, String phone, String locationAddress, BuildContext context) async
+  validateSignUpForm(XFile? imageXFile,String password, String confirmPassword, String name, String email, String phone, String locationAddress, BuildContext context) async
   {
     if(imageXFile==null){
       commonViewModel.showSnackBar("Please Select Image File", context);

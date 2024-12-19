@@ -63,7 +63,7 @@ class ShipmentAddressUiDesign extends StatelessWidget {
           child: InkWell(
             onTap: (){
 
-              Navigator.push(context, MaterialPageRoute(builder: (c)=> const mySplashScreen()));
+              Navigator.push(context, MaterialPageRoute(builder: (c)=> const MySplashScreen()));
             },
             child: Container(
               alignment: Alignment.center,
@@ -73,7 +73,7 @@ class ShipmentAddressUiDesign extends StatelessWidget {
               child: Center(
                 child: Text(
                   orderStatus == "ended" ? "Go back" :"Order Picking - Done",
-                  style: TextStyle(color: Colors.white, fontSize: 15),
+                  style: const TextStyle(color: Colors.white, fontSize: 15),
                 ),
               ),
             ),

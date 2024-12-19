@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:sellers/view/authscreens/auth_screen.dart';
 import 'package:sellers/view/mainscreen/home_screen.dart';
 
-class mySplashScreen extends StatefulWidget {
-  const mySplashScreen({super.key});
+class MySplashScreen extends StatefulWidget {
+  const MySplashScreen({super.key});
   @override
-  State<mySplashScreen> createState() => _mySplashScreenState();
+  State<MySplashScreen> createState() => _MySplashScreenState();
 }
 
-class _mySplashScreenState extends State<mySplashScreen> {
+class _MySplashScreenState extends State<MySplashScreen> {
   initTimer(){
 
     Timer(const Duration(seconds: 3),() async
@@ -31,6 +31,7 @@ class _mySplashScreenState extends State<mySplashScreen> {
     initTimer();
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(

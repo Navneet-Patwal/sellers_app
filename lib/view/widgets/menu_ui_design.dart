@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sellers/global/global_ins.dart';
 import 'package:sellers/view/mainscreen/items/items_screen.dart';
 import '../../model/menu.dart';
 
@@ -33,7 +34,7 @@ class _MenuUiDesignState extends State<MenuUiDesign> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(widget.menuModel!.menuTitle.toString(),
+                Text(widget.menuModel!.menuInfo.toString(),
                 style: const TextStyle(
                   color: Colors.white,
                   fontSize: 20,
@@ -42,8 +43,9 @@ class _MenuUiDesignState extends State<MenuUiDesign> {
                 ),
                 IconButton(onPressed: (){
                   //to delete it
+                  menuViewModel.deleteMenu(widget.menuModel!.menuId,context);
                 },
-                    icon: const Icon(Icons.delete,
+                    icon: const Icon(Icons.delete_outline,
                     color: Colors.white,))
               ],
             )

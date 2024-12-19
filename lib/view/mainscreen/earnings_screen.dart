@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:sellers/global/global_var.dart';
-
-import '../splashScreen/splash_screen.dart';
-
 class EarningsScreen extends StatefulWidget {
   const EarningsScreen({super.key});
 

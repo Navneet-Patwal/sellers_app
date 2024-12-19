@@ -17,7 +17,7 @@ class StatusBanner extends StatelessWidget {
 
     status! ? iconData = Icons.done :iconData = Icons.cancel;
     status! ? message="Successful": message="Unsuccessful";
-    return Container(
+    return SizedBox(
       height: 50,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,

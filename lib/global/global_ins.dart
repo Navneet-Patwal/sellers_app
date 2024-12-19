@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:sellers/viewModel/auth_view_model.dart';
 import 'package:sellers/viewModel/item_view_model.dart';
 import 'package:sellers/viewModel/menu_view_model.dart';

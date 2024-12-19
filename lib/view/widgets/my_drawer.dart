@@ -5,6 +5,7 @@ import 'package:sellers/global/global_var.dart';
 import 'package:sellers/view/mainscreen/earnings_screen.dart';
 import 'package:sellers/view/mainscreen/history_screen.dart';
 import 'package:sellers/view/mainscreen/home_screen.dart';
+import 'package:sellers/view/mainscreen/info_update_screen.dart';
 import 'package:sellers/view/mainscreen/new_orders_screen.dart';
 
 import '../splashScreen/splash_screen.dart';
@@ -25,30 +26,35 @@ class MyDrawer extends StatelessWidget {
                 Material(
                   borderRadius: const BorderRadius.all(Radius.circular(81)),
                   elevation: 8,
-                  child: SizedBox(
-                    height: 158,
-                    width: 158,
-                    child: Stack(
-                      children: [
-                        CircleAvatar(
-                          radius:81,
-                          backgroundImage: NetworkImage(
-                              sharedPreferences!.getString("imageUrl").toString()
+                  child: InkWell(
+                    onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (c)=> const InfoUpdateScreen()));
+                    },
+                    child: SizedBox(
+                      height: 158,
+                      width: 158,
+                      child: Stack(
+                        children: [
+                          CircleAvatar(
+                            radius:81,
+                            backgroundImage: NetworkImage(
+                                sharedPreferences!.getString("imageUrl").toString()
+                            ),
                           ),
-                        ),
-                        Positioned(
-                            right: 0,
-                            top:0,
-                            child: Container(
-                              width: 40,
-                              height: 40,
-                              decoration:const BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Colors.white,
-                              ),
-                              child: IconButton(onPressed: (){}, icon: const Icon(Icons.edit, size: 25,color: Colors.black45,),),
-                            ))
-                      ],
+                          Positioned(
+                              right: 0,
+                              top:0,
+                              child: Container(
+                                width: 40,
+                                height: 40,
+                                decoration:const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Colors.white,
+                                ),
+                                child: const Icon(Icons.edit, size: 25,color: Colors.black45,),),
+                              )
+                        ],
+                      ),
                     ),
                   )
                 ),
@@ -76,9 +82,7 @@ class MyDrawer extends StatelessWidget {
                 leading: const Icon(Icons.home, color: Colors.white,),
                 title: const Text("Home",
                     style: TextStyle(color: Colors.white)),
-                onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (c) => HomeScreen()));
-                },
+                onTap: () => Navigator.push(context, MaterialPageRoute(builder: (c) => const HomeScreen())),
 
               ),
 
@@ -160,7 +164,7 @@ class MyDrawer extends StatelessWidget {
                     style: TextStyle(color: Colors.white)),
                 onTap: () {
                   FirebaseAuth.instance.signOut();
-                  Navigator.push(context, MaterialPageRoute(builder: (c) => mySplashScreen()));
+                  Navigator.push(context, MaterialPageRoute(builder: (c) => const MySplashScreen()));
                 },
 
               ),

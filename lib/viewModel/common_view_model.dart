@@ -12,16 +12,17 @@ class CommonViewModel{
     position = cPosition;
     placeMark = await placemarkFromCoordinates (cPosition.latitude, cPosition.longitude);
     Placemark placeMarkVar = placeMark![0];
-
     fullAddress = "${placeMarkVar.subThoroughfare} ${placeMarkVar.thoroughfare}, ${placeMarkVar.subLocality} ${placeMarkVar.locality}, ${placeMarkVar.subAdministrativeArea} ${placeMarkVar.administrativeArea} ${placeMarkVar.postalCode}";
      return fullAddress;
   }
+
   showSnackBar(String message, BuildContext context){
     final snackBar = SnackBar(content: Text(message));
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
+
   updateLocationInDatabase() async{
-    String address = getCurrentLocation();
+    String address = await getCurrentLocation();
     await FirebaseFirestore.instance
         .collection("sellers")
         .doc(FirebaseAuth.instance.currentUser!.uid)

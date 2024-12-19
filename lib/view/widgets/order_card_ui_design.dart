@@ -10,7 +10,7 @@ class OrderCardUiDesign extends StatelessWidget {
   final String? orderId;
   final List<String>? separateQuantityList;
 
-  OrderCardUiDesign({super.key,
+  const OrderCardUiDesign({super.key,
   this.itemCount, this.data, this.orderId, this.separateQuantityList});
 
   @override
@@ -37,7 +37,7 @@ class OrderCardUiDesign extends StatelessWidget {
 }
 
 Widget placeOrderDesignWidget(Item model, BuildContext context, String quantityNumber){
-  return Container(
+  return SizedBox(
     width: MediaQuery.of(context).size.width,
     height:120,
     child: Row(

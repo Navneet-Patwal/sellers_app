@@ -46,6 +46,7 @@ dependencies:
   cloud_firestore:
   shared_preferences:
   intl:
+  lottie:
 
 dev_dependencies:
   flutter_test:

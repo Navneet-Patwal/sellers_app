@@ -192,7 +192,7 @@ void _verifyOtp() async{
                 !flag?ElevatedButton(
                   onPressed: () async
                   {
-                    authViewModel.ValidateSignUpForm(
+                    authViewModel.validateSignUpForm(
                         imageFile,
                         passwordTextEditingController.text.trim(),
                         confirmPasswordTextEditingController.text.trim(),

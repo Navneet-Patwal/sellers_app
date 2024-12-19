@@ -191,6 +191,7 @@ class _MenuUploadScreenState extends State<MenuUploadScreen>
     super.initState();
     menuViewModel.getCategories();
   }
+  @override
   Widget build(BuildContext context) {
     return imageFile==null?defaultScreen():uploadMenuFormScreen();
   }

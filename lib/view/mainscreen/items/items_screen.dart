@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:sellers/global/global_ins.dart';
 import 'package:sellers/view/widgets/my_appbar.dart';
 import '../../../model/item.dart';
@@ -59,8 +60,18 @@ class _ItemsScreenState extends State<ItemsScreen> {
 
             // Check if there is no data
             if (!snapShot.hasData || snapShot.data!.docs.isEmpty) {
-              return const Center(child: Text("No Items found. Add items to get started",
-              style: TextStyle(color: Colors.black, fontSize: 20),));
+              return  Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Lottie.network("https://lottie.host/fb5c081f-880e-4df6-9836-c198b70283d9/x9bv6jbwou.json",
+                  width: MediaQuery.of(context).size.width,
+                  height: 300,
+                  fit: BoxFit.contain),
+                  const Center(child: Text("No Items found. Add items to get started",
+                  style: TextStyle(color: Colors.black, fontSize: 20),)),
+                ],
+              );
             }
             return
             ListView.builder(

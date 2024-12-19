@@ -75,4 +75,17 @@ class MenuViewModel{
         .collection("menus").orderBy("publishedDateTime", descending: true)
         .snapshots();
   }
+
+  deleteMenu(menuId,context) async {
+    try {
+      CollectionReference collection = FirebaseFirestore.instance.collection('menus');
+      await collection.doc(menuId).delete();
+      await FirebaseFirestore.instance.collection("sellers").doc(sharedPreferences!.getString("uid"))
+      .collection('menus').doc(menuId).delete();
+      commonViewModel.showSnackBar("Menu deleted successfully", context);
+    } catch (e) {
+      commonViewModel.showSnackBar("Error in deleting menu.", context);
+    }
+  }
+
 }
