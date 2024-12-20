@@ -88,4 +88,25 @@ class MenuViewModel{
     }
   }
 
+  updateMenuInfo(menuTitle, menuCategory,menuId,context) async {
+    try{
+      String downloadUrl = "https://images.unsplash.com/photo-1619566636858-adf3ef46400b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+      await FirebaseFirestore.instance.collection("sellers").doc(sharedPreferences!.getString("uid"))
+      .collection("menus").doc(menuId).update({
+        "menuInfo":menuTitle,
+        "menuTitle":menuCategory,
+        "menuImage":downloadUrl,
+      });
+      await FirebaseFirestore.instance
+          .collection("menus").doc(menuId).update({
+        "menuInfo":menuTitle,
+        "menuTitle":menuCategory,
+        "menuImage":downloadUrl,
+      });
+      commonViewModel.showSnackBar("Menu updated", context);
+    } catch (e){
+      commonViewModel.showSnackBar(e.toString(), context);
+    }
+  }
+
 }

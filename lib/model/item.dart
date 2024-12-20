@@ -11,7 +11,7 @@ class Item{
   String? itemTitle;
   String? itemImage;
   String? description;
-  int? price;
+  String? price;
   Timestamp? publishedDateTime;
   String? status;
   bool? isRecommended;

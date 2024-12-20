@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sellers/view/editscreens/edit_item_info_screen.dart';
 
 import '../../global/global_ins.dart';
 import '../../model/item.dart';
@@ -52,6 +53,7 @@ class _ItemUiDesignState extends State<ItemUiDesign> {
                 child: PopupMenuButton<String>(
                   onSelected: (value) {
                     if (value == 'edit') {
+                      Navigator.push(context, MaterialPageRoute(builder: (c)=> EditItemInfoScreen(itemId: widget.itemModel!.itemId,menuId:widget.menuId)));
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(content: Text('edit clicked!')),
                       );

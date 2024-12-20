@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sellers/global/global_ins.dart';
+import 'package:sellers/view/editscreens/edit_menu_info_screen.dart';
 import 'package:sellers/view/mainscreen/items/items_screen.dart';
 import '../../model/menu.dart';
 
@@ -51,9 +52,7 @@ class _MenuUiDesignState extends State<MenuUiDesign> {
                  child: PopupMenuButton<String>(
                    onSelected: (value) {
                      if (value == 'edit') {
-                             ScaffoldMessenger.of(context).showSnackBar(
-                               const SnackBar(content: Text('edit clicked!')),
-                             );
+                           Navigator.push(context,MaterialPageRoute(builder: (c)=> EditMenuInfoScreen(menuId: widget.menuModel!.menuId,)));
                      } else if (value == 'delete') {
                              menuViewModel.deleteMenu(widget.menuModel!.menuId,context);
                              ScaffoldMessenger.of(context).showSnackBar(

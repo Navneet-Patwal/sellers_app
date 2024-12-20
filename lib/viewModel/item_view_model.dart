@@ -38,7 +38,6 @@ class ItemViewModel {
 
   saveItemInfoToDatabase(infoText, titleText,descText,priceText, downloadUrl,Menu menuModel,uniqueFileID, context) async {
 
-
     final referenceSeller = FirebaseFirestore.instance.collection("sellers")
         .doc(sharedPreferences!.getString("uid"))
         .collection("menus")
@@ -106,6 +105,34 @@ class ItemViewModel {
       commonViewModel.showSnackBar("Item deleted successfully", context);
     } catch (e) {
       commonViewModel.showSnackBar("Error in deleting menu.", context);
+    }
+  }
+
+  updateItemInfo(infoText, titleText, descText, priceText,menuId,itemId,context) async {
+    String downloadUrl = "https://images.unsplash.com/photo-1734126801303-06da3e3f2db6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwxNnx8fGVufDB8fHx8fA%3D%3D";
+    try {await FirebaseFirestore.instance.collection("sellers").doc(sharedPreferences!.getString("uid"))
+        .collection("menus").doc(menuId).collection("items").doc(itemId).update(
+        {
+          "itemInfo":infoText,
+          "itemTitle": titleText,
+          "description":descText,
+          "price": priceText,
+          "itemImage":downloadUrl,
+    }
+    );
+
+    await FirebaseFirestore.instance.collection("items").doc(itemId).update(
+        {
+          "itemInfo":infoText,
+          "itemTitle": titleText,
+          "description":descText,
+          "price": priceText,
+          "itemImage":downloadUrl,
+        });
+    commonViewModel.showSnackBar("Item info update successfully.", context);
+
+  } catch(e){
+      commonViewModel.showSnackBar(e.toString(), context);
     }
   }
 
