@@ -5,6 +5,7 @@ import '../global/global_var.dart';
 import 'package:firebase_storage/firebase_storage.dart' as fStorage;
 import '../model/menu.dart';
 
+
 class ItemViewModel {
   validateItemUploadForm(infoText, titleText, descText, priceText,Menu menuModel, context) async {
     if(imageFile != null){
