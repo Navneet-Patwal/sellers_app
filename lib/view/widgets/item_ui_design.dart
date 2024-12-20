@@ -7,7 +7,7 @@ import '../../model/item.dart';
 class ItemUiDesign extends StatefulWidget {
   Item? itemModel;
   String? menuId;
-  ItemUiDesign({super.key, this.itemModel, required menuId});
+  ItemUiDesign({super.key, this.itemModel, this.menuId});
 
   @override
   State<ItemUiDesign> createState() => _ItemUiDesignState();
