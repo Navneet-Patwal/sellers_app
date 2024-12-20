@@ -8,8 +8,6 @@ import '../model/menu.dart';
 
 
 class ItemViewModel {
-
-
   validateItemUploadForm(infoText, titleText, descText, priceText,Menu menuModel, context) async {
     if(imageFile != null){
       if( infoText.isNotEmpty && titleText.isNotEmpty && descText.isNotEmpty && priceText.isNotEmpty ){
