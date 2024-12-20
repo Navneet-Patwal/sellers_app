@@ -11,7 +11,6 @@ import 'items_upload_screen.dart';
 
 
 class ItemsScreen extends StatefulWidget {
-
   final Menu? menuModel;
   const ItemsScreen({super.key, this.menuModel});
 
