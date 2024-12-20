@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 import '../../global/global_ins.dart';
 import '../widgets/my_appbar.dart';
@@ -32,7 +33,18 @@ class _HistoryScreenState extends State<HistoryScreen> {
 
           // Check if there is no data
           if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-            return const Center(child: Text("No History", style: TextStyle(color: Colors.black, fontSize:25)));
+            return  Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Lottie.network("https://lottie.host/60a95ff6-1e02-45c7-826d-0d9687af5aa7/hzkQnqGBU7.json",
+                    width: MediaQuery.of(context).size.width,
+                    height: 300,
+                    fit: BoxFit.contain),
+                const Center(child: Text("No History",
+                  style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),)),
+              ],
+            );
           }
           return snapshot.hasData ?
           ListView.builder(

@@ -152,7 +152,7 @@ class _MenuUploadScreenState extends State<MenuUploadScreen>
                      categoryName,
                      style: const TextStyle(color: Colors.black), // Black text for the selected item
                    );
-                 }).toList();
+                 }).toSet().toList();
                },
              ),
            ),

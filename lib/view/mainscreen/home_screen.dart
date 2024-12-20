@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:sellers/global/global_ins.dart';
 import 'package:sellers/global/global_var.dart';
 import 'package:sellers/view/mainscreen/menus/menu_upload_screen.dart';
@@ -34,7 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
           showBackButton: false,
       ),
       floatingActionButton: SizedBox(
-        width: 120,
+        width: 110,
         child: FloatingActionButton(
           backgroundColor: Colors.black87,
             onPressed: ()
@@ -42,11 +43,8 @@ class _HomeScreenState extends State<HomeScreen> {
               Navigator.push(context, MaterialPageRoute(builder: (c)=> const MenuUploadScreen()));
             },
             child: const Row(
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(left: 5,right: 2),
-                  child: Icon(Icons.add,color: Colors.white,),
-                ),
+              children:  [
+                Icon(Icons.add,color: Colors.white,),
                  Text(
                 "New Menu",
                   style: TextStyle(
@@ -72,7 +70,18 @@ class _HomeScreenState extends State<HomeScreen> {
 
           // Check if there is no data
           if (!snapShot.hasData || snapShot.data!.docs.isEmpty) {
-            return const Center(child: Text("No menus found! Add new menu",style: TextStyle(fontSize: 20,color: Colors.black),));
+            return  Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Lottie.network("https://lottie.host/60a95ff6-1e02-45c7-826d-0d9687af5aa7/hzkQnqGBU7.json",
+                    width: MediaQuery.of(context).size.width,
+                    height: 300,
+                    fit: BoxFit.contain),
+                const Center(child: Text("No Menus found.",
+                  style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),)),
+              ],
+            );
           }
             return
                 ListView.builder(

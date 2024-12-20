@@ -41,12 +41,15 @@ class _MenuUiDesignState extends State<MenuUiDesign> {
                   fontFamily: "Train",
                 ),
                 ),
-                IconButton(onPressed: (){
-                  //to delete it
-                  menuViewModel.deleteMenu(widget.menuModel!.menuId,context);
-                },
-                    icon: const Icon(Icons.delete_outline,
-                    color: Colors.white,))
+                Padding(
+                  padding: const EdgeInsets.only(left: 50),
+                  child: IconButton(onPressed: (){
+                    //to delete it
+                    menuViewModel.deleteMenu(widget.menuModel!.menuId,context);
+                  },
+                      icon: const Icon(Icons.keyboard_control,
+                      color: Colors.white,)),
+                )
               ],
             )
           ],

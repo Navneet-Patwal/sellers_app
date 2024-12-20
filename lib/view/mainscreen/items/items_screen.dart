@@ -64,12 +64,12 @@ class _ItemsScreenState extends State<ItemsScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Lottie.network("https://lottie.host/fb5c081f-880e-4df6-9836-c198b70283d9/x9bv6jbwou.json",
+                  Lottie.network("https://lottie.host/60a95ff6-1e02-45c7-826d-0d9687af5aa7/hzkQnqGBU7.json",
                   width: MediaQuery.of(context).size.width,
                   height: 300,
                   fit: BoxFit.contain),
-                  const Center(child: Text("No Items found. Add items to get started",
-                  style: TextStyle(color: Colors.black, fontSize: 20),)),
+                  const Center(child: Text("No Items found.",
+                  style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),)),
                 ],
               );
             }
