@@ -11,13 +11,13 @@ class MenuViewModel{
 
 
   getCategories() async{
+    categoryList.clear();
     await FirebaseFirestore.instance.
     collection("categories")
         .get().then((QuerySnapshot dataSnapshot){
-          dataSnapshot.docs.forEach((doc)
-          {
+          for (var doc in dataSnapshot.docs) {
             categoryList.add(doc["name"]);
-          });
+          }
     });
   }
 

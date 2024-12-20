@@ -138,7 +138,7 @@ class _MenuUploadScreenState extends State<MenuUploadScreen>
                      style: const TextStyle(color: Colors.white), // White text for dropdown options
                    ),
                  );
-               }).toSet().toList(),
+               }).toList(),
                onChanged: (value) {
                  setState(() {
                    menuTitleCategoryName = value.toString();
@@ -152,7 +152,7 @@ class _MenuUploadScreenState extends State<MenuUploadScreen>
                      categoryName,
                      style: const TextStyle(color: Colors.black), // Black text for the selected item
                    );
-                 }).toSet().toList();
+                 }).toList();
                },
              ),
            ),
@@ -168,7 +168,6 @@ class _MenuUploadScreenState extends State<MenuUploadScreen>
                );
                 setState(() {
                   imageFile = null;
-                  categoryList = [];
                 });
                 Navigator.push(context, MaterialPageRoute(builder: (c)=> const HomeScreen()));
                 },
@@ -187,7 +186,6 @@ class _MenuUploadScreenState extends State<MenuUploadScreen>
   }
   @override
   void initState(){
-    // TODO implement initState
     super.initState();
     menuViewModel.getCategories();
   }
