@@ -18,7 +18,7 @@ class _EarningsScreenState extends State<EarningsScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("₹" + sellersTotalEarnings.toString(),
+                Text("₹$sellersTotalEarnings",
                 style: const TextStyle(
                   fontSize: 80,
                   color: Colors.black,
@@ -50,9 +50,9 @@ class _EarningsScreenState extends State<EarningsScreen> {
                   },
                   child: const Card(
                     color: Colors.black,
-                    margin: EdgeInsets.symmetric(vertical: 20, horizontal: 140),
+                    margin: EdgeInsets.symmetric(vertical: 20, horizontal: 125),
                     child: ListTile(
-                      leading: Icon(Icons.arrow_back,
+                      leading: Icon(Icons.arrow_back,size: 30,
                       color: Colors.white,),
                       title: Text(
                         "Back",
@@ -60,7 +60,7 @@ class _EarningsScreenState extends State<EarningsScreen> {
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
-                          fontSize: 14,
+                          fontSize: 18,
                         ),
                       ),
                     ),
