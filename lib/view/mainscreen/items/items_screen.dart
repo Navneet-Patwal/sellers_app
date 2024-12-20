@@ -8,8 +8,6 @@ import '../../../model/menu.dart';
 import '../../widgets/item_ui_design.dart';
 import 'items_upload_screen.dart';
 
-
-
 class ItemsScreen extends StatefulWidget {
   final Menu? menuModel;
   const ItemsScreen({super.key, this.menuModel});
