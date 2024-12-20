@@ -13,7 +13,6 @@ class MySplashScreen extends StatefulWidget {
 
 class _MySplashScreenState extends State<MySplashScreen> {
   initTimer(){
-
     Timer(const Duration(seconds: 5),() async
     {
       if( FirebaseAuth.instance.currentUser == null){
@@ -21,12 +20,10 @@ class _MySplashScreenState extends State<MySplashScreen> {
       } else {
         Navigator.pushReplacement(context, MaterialPageRoute(builder: (c)=>const HomeScreen()));
       }
-
     });
   }
 
   @override
-
   void initState(){
     super.initState();
     initTimer();

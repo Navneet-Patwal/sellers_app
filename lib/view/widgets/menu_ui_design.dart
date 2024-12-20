@@ -23,39 +23,61 @@ class _MenuUiDesignState extends State<MenuUiDesign> {
        child: SizedBox(
          height: 270,
            width: MediaQuery.of(context).size.width,
-         child: Column(
-          children: [
-          Image.network(
-            widget.menuModel!.menuImage.toString(),
-            width: MediaQuery.of(context).size.width,
-            height: 220,
-            fit:BoxFit.fitWidth
-          ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(widget.menuModel!.menuInfo.toString(),
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 20,
-                  fontFamily: "Train",
-                ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 50),
-                  child: IconButton(onPressed: (){
-                    //to delete it
-                    menuViewModel.deleteMenu(widget.menuModel!.menuId,context);
-                  },
-                      icon: const Icon(Icons.keyboard_control,
-                      color: Colors.white,)),
-                )
-              ],
-            )
-          ],
+         child: Stack(
+           children: [
+             Column(
+               children: [
+                 Image.network(
+                     widget.menuModel!.menuImage.toString(),
+                     width: MediaQuery.of(context).size.width,
+                     height: 220,
+                     fit:BoxFit.fitWidth
+                 ),
+                 Padding(
+                   padding: const EdgeInsets.all(8.0),
+                   child: Text(widget.menuModel!.menuInfo.toString(),
+                     style: const TextStyle(
+                       color: Colors.white,
+                       fontSize: 20,
+                       fontFamily: "Train",
+                     ),
+                   ),
+                 ),
+               ],
+             ),
+               Positioned(
+                 bottom: 0,
+                 right: 0,
+                 child: PopupMenuButton<String>(
+                   onSelected: (value) {
+                     if (value == 'edit') {
+                             ScaffoldMessenger.of(context).showSnackBar(
+                               const SnackBar(content: Text('edit clicked!')),
+                             );
+                     } else if (value == 'delete') {
+                             menuViewModel.deleteMenu(widget.menuModel!.menuId,context);
+                             ScaffoldMessenger.of(context).showSnackBar(
+                                 const SnackBar(content: Text('Menu has been deleted.')));
+                     }
+                   },
+                   itemBuilder: (BuildContext context) {
+                     return [
+                             const PopupMenuItem(
+                               value: 'edit',
+                               child: Text('Edit'),
+                             ),
+                             const PopupMenuItem(
+                               value: 'delete',
+                               child: Text('Delete'),
+                             ),
+                     ];
+                   },
+                   child: const  Icon(Icons.keyboard_control, color: Colors.white,size: 40,),
+                   ),
+               ),
+           ],
          ),
        ),
-
     ),);
   }
 }

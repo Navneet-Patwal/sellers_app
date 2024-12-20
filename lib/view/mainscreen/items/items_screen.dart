@@ -30,7 +30,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
           showBackButton: true,
         ),
         floatingActionButton: SizedBox(
-          width: 120,
+          width: 100,
           child: FloatingActionButton(
             backgroundColor: Colors.black87,
             onPressed: ()
@@ -102,6 +102,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
                     color: Colors.black87,
                     child: ItemUiDesign(
                       itemModel: itemModel,
+                      menuId:widget.menuModel!.menuId,
                     ),
                   );
                 }
