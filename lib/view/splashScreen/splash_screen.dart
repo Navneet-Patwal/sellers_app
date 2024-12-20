@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:sellers/view/authscreens/auth_screen.dart';
 import 'package:sellers/view/mainscreen/home_screen.dart';
 
@@ -13,7 +14,7 @@ class MySplashScreen extends StatefulWidget {
 class _MySplashScreenState extends State<MySplashScreen> {
   initTimer(){
 
-    Timer(const Duration(seconds: 3),() async
+    Timer(const Duration(seconds: 5),() async
     {
       if( FirebaseAuth.instance.currentUser == null){
         Navigator.pushReplacement(context, MaterialPageRoute(builder: (c)=>const AuthScreen()));
@@ -40,9 +41,9 @@ class _MySplashScreenState extends State<MySplashScreen> {
           children: [
             Padding(
               padding: const EdgeInsets.all(10.0),
-              child: Image.asset(
-                "images/sellers.webp"
-              ),
+              child: Lottie.network("https://lottie.host/8825a28c-5940-4a79-ac2a-b5fd7f2067bf/fNVxBpZTH1.json",
+              width: MediaQuery.of(context).size.width,
+              height: 500)
             ),
             const Text(
               "Green Stack",
@@ -50,7 +51,7 @@ class _MySplashScreenState extends State<MySplashScreen> {
               style: TextStyle(
                 letterSpacing: 3,
                 fontSize: 26,
-                color: Colors.grey
+                color: Colors.green
               ),
             )
           ],

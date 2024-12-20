@@ -37,12 +37,17 @@ class _ItemsScreenState extends State<ItemsScreen> {
             {
               Navigator.push(context, MaterialPageRoute(builder: (c)=> ItemUploadScreen(menuModel: widget.menuModel,)));
             },
-            child: const Text(
-              "Add New Item",
-              style: TextStyle(
-                  fontSize: 15,
-                  color: Colors.white
-              ),
+            child:const Row(
+              children:  [
+                Icon(Icons.add,color: Colors.white,),
+                Text(
+                  "New Item",
+                  style: TextStyle(
+                      fontSize: 15,
+                      color: Colors.white
+                  ),
+                ),
+              ],
             ),
           ),
         ),
@@ -50,7 +55,18 @@ class _ItemsScreenState extends State<ItemsScreen> {
           stream: itemViewModel.retrieveItems(widget.menuModel!.menuId),
           builder: (context, snapShot){
             if (snapShot.connectionState == ConnectionState.waiting) {
-              return const Center(child: CircularProgressIndicator(color: Colors.black,)); // Show loading indicator
+              return  Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Lottie.network("https://lottie.host/0cffb566-76a0-47e0-be40-43b4aca390d0/mojGmYzm3R.json",
+                      width: MediaQuery.of(context).size.width,
+                      height: 300,
+                      fit: BoxFit.contain),
+                  const Center(child: Text("Loading...",
+                    style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),)),
+                ],
+              ); // Show loading indicator
             }
 
             // Check for errors

@@ -21,7 +21,18 @@ class _NewOrdersScreenState extends State<NewOrdersScreen> {
           stream:ordersViewModel.getNewOrders(),
           builder: (c, snapshot){
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(child: CircularProgressIndicator(color: Colors.black,)); // Show loading indicator
+              return  Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Lottie.network("https://lottie.host/0cffb566-76a0-47e0-be40-43b4aca390d0/mojGmYzm3R.json",
+                      width: MediaQuery.of(context).size.width,
+                      height: 300,
+                      fit: BoxFit.contain),
+                  const Center(child: Text("Loading...",
+                    style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),)),
+                ],
+              ); // Show loading indicator
             }
 
             // Check for errors
