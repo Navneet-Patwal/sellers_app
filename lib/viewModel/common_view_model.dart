@@ -17,7 +17,16 @@ class CommonViewModel{
   }
 
   showSnackBar(String message, BuildContext context){
-    final snackBar = SnackBar(content: Text(message));
+    final snackBar = SnackBar
+      (content: Center(child: Text(message, style: const TextStyle(color: Colors.white),)),
+      backgroundColor: Colors.black,
+      behavior: SnackBarBehavior.floating,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+      ),
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+      duration: const Duration(seconds: 3),
+    );
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 

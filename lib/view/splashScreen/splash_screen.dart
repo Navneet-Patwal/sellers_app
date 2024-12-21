@@ -48,7 +48,8 @@ class _MySplashScreenState extends State<MySplashScreen> {
               style: TextStyle(
                 letterSpacing: 3,
                 fontSize: 26,
-                color: Colors.green
+                color: Colors.green,
+                fontWeight: FontWeight.bold
               ),
             )
           ],

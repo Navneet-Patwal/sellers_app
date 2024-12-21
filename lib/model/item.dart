@@ -47,7 +47,7 @@ class Item{
     itemTitle = json["itemTitle"];
     itemImage = json["itemImage"];
     description = json["description"];
-    price = json["price"];
+    price = json["price"].toString();
     publishedDateTime = json["publishedDateTime"];
     status = json["status"];
     isRecommended = json["isRecommended"];

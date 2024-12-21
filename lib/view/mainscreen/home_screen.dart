@@ -35,7 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
           showBackButton: false,
       ),
       floatingActionButton: SizedBox(
-        width: 110,
+        width: 100,
         child: FloatingActionButton(
           backgroundColor: Colors.black87,
             onPressed: ()
@@ -48,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
                  Text(
                 "New Menu",
                   style: TextStyle(
-                    fontSize: 15,
+                    fontSize: 14,
                     color: Colors.white
                   ),
                         ),

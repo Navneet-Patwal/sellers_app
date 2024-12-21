@@ -54,13 +54,10 @@ class _ItemUiDesignState extends State<ItemUiDesign> {
                   onSelected: (value) {
                     if (value == 'edit') {
                       Navigator.push(context, MaterialPageRoute(builder: (c)=> EditItemInfoScreen(itemId: widget.itemModel!.itemId,menuId:widget.menuId)));
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('edit clicked!')),
-                      );
+
                     } else if (value == 'delete') {
                       itemViewModel.deleteItem(widget.itemModel!.itemId,widget.menuId,context);
-                      ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Item has been deleted.')));
+                      commonViewModel.showSnackBar("Item has been deleted", context);
                     }
                   },
                   itemBuilder: (BuildContext context) {

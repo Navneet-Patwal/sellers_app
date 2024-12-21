@@ -103,7 +103,6 @@ class ItemViewModel {
       await collection.doc(itemId).delete();
       await FirebaseFirestore.instance.collection("sellers").doc(sharedPreferences!.getString("uid"))
           .collection('menus').doc(menuId).collection("items").doc(itemId).delete();
-      commonViewModel.showSnackBar("Item deleted successfully", context);
     } catch (e) {
       commonViewModel.showSnackBar("Error in deleting menu.", context);
     }

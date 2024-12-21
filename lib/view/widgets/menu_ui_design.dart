@@ -55,8 +55,7 @@ class _MenuUiDesignState extends State<MenuUiDesign> {
                            Navigator.push(context,MaterialPageRoute(builder: (c)=> EditMenuInfoScreen(menuId: widget.menuModel!.menuId,)));
                      } else if (value == 'delete') {
                              menuViewModel.deleteMenu(widget.menuModel!.menuId,context);
-                             ScaffoldMessenger.of(context).showSnackBar(
-                                 const SnackBar(content: Text('Menu has been deleted.')));
+                             commonViewModel.showSnackBar("Menu has been deleted", context);
                      }
                    },
                    itemBuilder: (BuildContext context) {
