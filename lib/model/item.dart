@@ -11,7 +11,7 @@ class Item{
   String? itemTitle;
   String? itemImage;
   String? description;
-  String? price;
+  double? price;
   Timestamp? publishedDateTime;
   String? status;
   bool? isRecommended;
@@ -47,7 +47,7 @@ class Item{
     itemTitle = json["itemTitle"];
     itemImage = json["itemImage"];
     description = json["description"];
-    price = json["price"].toString();
+    price = json["price"];
     publishedDateTime = json["publishedDateTime"];
     status = json["status"];
     isRecommended = json["isRecommended"];

@@ -33,7 +33,6 @@ class MyApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       home: const MySplashScreen(),
-
     );
   }
 }
