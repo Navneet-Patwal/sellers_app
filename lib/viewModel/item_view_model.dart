@@ -1,9 +1,10 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../global/global_ins.dart';
 import '../global/global_var.dart';
-import 'package:firebase_storage/firebase_storage.dart' as fStorage;
 import '../model/menu.dart';
+import 'package:http/http.dart' as http;
 
 
 class ItemViewModel {
@@ -12,8 +13,8 @@ class ItemViewModel {
       if( infoText.isNotEmpty && titleText.isNotEmpty && descText.isNotEmpty && priceText.isNotEmpty ){
         commonViewModel.showSnackBar("Uploading image please wait...", context);
         String uniqueFileID = DateTime.now().millisecondsSinceEpoch.toString();
-        // String downloadUrl = await uploadImageToStorage(uniqueFileID);
-        String downloadUrl = "https://images.unsplash.com/photo-1725610147161-5caa05b3b156?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+        String downloadUrl = await uploadImageToStorage(uniqueFileID);
+        //String downloadUrl = "https://images.unsplash.com/photo-1725610147161-5caa05b3b156?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
         await saveItemInfoToDatabase(infoText, titleText,descText,priceText, downloadUrl, menuModel,uniqueFileID, context);
       } else{
         commonViewModel.showSnackBar("Please fill all the fields.", context);
@@ -26,13 +27,42 @@ class ItemViewModel {
 
 
   uploadImageToStorage(uniqueFileID) async {
+    String downloadUrl = "";
+    File file = File(imageFile!.path);
+    var uri = Uri.parse("https://api.cloudinary.com/v1_1/de2dkdxdr/raw/upload");
+    var request = http.MultipartRequest("POST", uri);
+    var fileBytes = await file.readAsBytes();
 
-    fStorage.Reference reference = fStorage.FirebaseStorage.instance.ref().child("itemImages");
+    var multipartFile = http.MultipartFile.fromBytes(
+      'file', // The form field name for the file
+      fileBytes,
+      filename: file.path.split("/").last, //The file name to send in the request
+    );
 
-    fStorage.UploadTask uploadTask = reference.child(uniqueFileID + ".jpg").putFile(File(imageFile!.path));
+    // Add the file part to the request
+    request.files.add(multipartFile);
 
-    fStorage.TaskSnapshot taskSnapshot = await uploadTask.whenComplete((){});
-    String downloadUrl =  await taskSnapshot.ref.getDownloadURL();
+    request.fields['upload_preset'] = "items_upload";
+    request.fields['resource_type'] = "raw";
+    var response = await request.send();
+
+    // Get the response as text
+    var responseBody = await response.stream.bytesToString();
+
+    if (response.statusCode == 200) {
+      var jsonResponse = jsonDecode(responseBody);
+      Map<String, String> requiredData = {
+        "id": jsonResponse["public_id"],
+        "size": jsonResponse["bytes"].toString(),
+        "url": jsonResponse["secure_url"],
+        "created_at": jsonResponse["created_at"],
+      };
+      downloadUrl = requiredData['url']!;
+      print("Upload successful!");
+    } else {
+      print("Upload failed with status: ${response.statusCode}");
+
+    }
     return downloadUrl;
   }
 

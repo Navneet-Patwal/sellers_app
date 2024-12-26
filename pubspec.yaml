@@ -47,6 +47,11 @@ dependencies:
   shared_preferences:
   intl:
   lottie:
+  cloudinary:
+  cloudinary_api:
+  cloudinary_flutter:
+  http:
+  dio: ^5.7.0
 
 dev_dependencies:
   flutter_test:
